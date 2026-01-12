@@ -53,7 +53,13 @@ const Search = () => {
 
 export default Search
 
-const Tab = ({ label, active, onClick }) => (
+interface TabProps {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}
+
+const Tab = ({ label, active, onClick }: TabProps) => (
   <button
     onClick={onClick}
     className={`font-bold pb-2 transition ${
@@ -68,7 +74,12 @@ const Tab = ({ label, active, onClick }) => (
 
 /* ---------------- Flights ---------------- */
 
-const FlightsForm = ({ tripType, setTripType }) => {
+interface FlightsFormProps {
+  tripType: string;
+  setTripType: (value: string) => void;
+}
+
+const FlightsForm = ({ tripType, setTripType }: FlightsFormProps) => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
@@ -487,7 +498,23 @@ const CarsForm = () => {
 
 /* ---------------- Traveler Counter Component ---------------- */
 
-const TravelerCounter = ({ label, sublabel, count, onIncrement, onDecrement, min = 0 }) => (
+interface TravelerCounterProps {
+  label: string;
+  sublabel?: string;
+  count: number;
+  onIncrement: () => void;
+  onDecrement: () => void;
+  min?: number;
+}
+
+const TravelerCounter = ({
+  label,
+  sublabel,
+  count,
+  onIncrement,
+  onDecrement,
+  min = 0,
+}: TravelerCounterProps) => (
   <div className="flex items-center justify-between">
     <div>
       <div className="font-semibold text-gray-800">{label}</div>
@@ -514,7 +541,14 @@ const TravelerCounter = ({ label, sublabel, count, onIncrement, onDecrement, min
 
 /* ---------------- Input Field ---------------- */
 
-const Input = ({ icon, placeholder, type = "text", readOnly = false }) => (
+interface InputProps {
+  icon: React.ReactNode;
+  placeholder: string;
+  type?: string;
+  readOnly?: boolean;
+}
+
+const Input = ({ icon, placeholder, type = "text", readOnly = false }: InputProps) => (
   <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-3 w-full sm:w-auto sm:min-w-[200px] bg-white hover:border-blue-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition">
     <div className="text-gray-500">
       {icon}
