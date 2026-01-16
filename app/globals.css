@@ -2,6 +2,41 @@
 @import "tw-animate-css";
 @import "tw-animate-css";
 
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+
+/* Swiper arrows container */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 44px !important;
+  height: 44px !important;
+  background-color: white !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Arrow icon */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 18px !important;
+  color: black !important;
+  font-weight: bold;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

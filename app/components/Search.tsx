@@ -19,10 +19,10 @@ const Search = () => {
 
   return (
     <>
-    <section className="w-full h-full px-25 flex-wrap z-10 relative  ">
-      <div className="rounded-lg shadow-md w-full min-h-[200px] -mt-35 bg-white text-gray-800 z-10 bg-black/50 ">
+<section className="w-full h-full px-4 sm:px-6 lg:px-20 flex-wrap z-10 relative">
+<div className="rounded-lg shadow-md w-full min-h-[200px] -mt-24 sm:-mt-32 bg-white text-gray-800 z-10">
 
-        <div className="flex gap-10 border w-full border-b-gray-400 rounded-t-lg px-10 pt-3 bg-slate-100">
+<div className="flex gap-6 border w-full border-b-gray-400 rounded-t-lg px-4 sm:px-10 pt-3 bg-slate-100 overflow-x-auto">
           <Tab label="Flights" active={tab === "flights"} onClick={() => setTab("flights")} />
           <Tab label="Packages" active={tab === "packages"} onClick={() => setTab("packages")} />
           <Tab label="Hotels" active={tab === "hotels"} onClick={() => setTab("hotels")} />
@@ -107,7 +107,7 @@ const FlightsForm = ({ tripType, setTripType }: FlightsFormProps) => {
   };
 
   return (
-    <div className="px-10">
+<div className="px-4 sm:px-10">
       {/* Trip Type, Travelers & Class Selector */}
       <div className="flex gap-6 mb-4 text-sm font-semibold text-gray-700">
         {/* Trip Type Dropdown */}
@@ -200,7 +200,7 @@ const FlightsForm = ({ tripType, setTripType }: FlightsFormProps) => {
 
       {/* Round-trip / One-way Form */}
       {(tripType === "round" || tripType === "oneway") && (
-        <div className="flex gap-4 items-center flex-wrap">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:flex gap-4 items-center">
           <Input icon={<Plane className="w-5 h-5" />} placeholder="From: City or Airport" />
           
           <button className="p-2 hover:bg-gray-100 rounded-full -mx-2">
@@ -215,7 +215,7 @@ const FlightsForm = ({ tripType, setTripType }: FlightsFormProps) => {
             <Input icon={<Calendar className="w-5 h-5" />} placeholder="Return Date" type="date" />
           )}
 
-          <button className="bg-blue-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition">
+<button className="bg-blue-500 hover:bg-orange-600 text-white font-bold px-8 py-3 rounded-lg transition w-full sm:w-auto">
             Search Flights
           </button>
         </div>
@@ -549,7 +549,8 @@ interface InputProps {
 }
 
 const Input = ({ icon, placeholder, type = "text", readOnly = false }: InputProps) => (
-  <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-3 w-full sm:w-auto sm:min-w-[200px] bg-white hover:border-blue-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition">
+  <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-4 py-3 w-full sm:min-w-[200px]
+ bg-white hover:border-blue-400 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200 transition">
     <div className="text-gray-500">
       {icon}
     </div>

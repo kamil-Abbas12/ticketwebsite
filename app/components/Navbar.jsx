@@ -7,6 +7,7 @@ import { Plane, Hotel, Car, Palmtree, Compass, Tag } from "lucide-react";
 import Search from "./Search"; // make sure path is correct
 
 const Navbar = () => {
+const [mobileMenu, setMobileMenu] = useState(false);
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [open, setOpen] = useState(false);
@@ -18,7 +19,7 @@ const Navbar = () => {
   return (
     <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
 
-      <div className="bg-white w-[1000px] h-[560px] rounded-xl shadow-2xl flex relative overflow-hidden">
+<div className="bg-white w-[95%] max-w-[1000px] h-auto md:h-[560px] rounded-xl shadow-2xl flex flex-col md:flex-row relative overflow-hidden">
 
         {/* Close */}
         <button
@@ -29,7 +30,7 @@ const Navbar = () => {
         </button>
 
         {/* LEFT PANEL */}
-        <div className="w-1/2 p-10 flex flex-col justify-center">
+<div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
 
           <h2 className="text-2xl font-bold mb-6">
             Sign in or Join ClubMiles
@@ -69,7 +70,7 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT PANEL */}
-        <div className="w-1/2 bg-gradient-to-br from-blue-700 to-indigo-700 text-white flex flex-col justify-between">
+        <div className="hidden md:flex w-1/2 bg-gradient-to-br from-blue-700 to-indigo-700 text-white flex flex-col justify-between">
 
           {/* Header */}
           <div className="p-10">
@@ -127,7 +128,7 @@ const Navbar = () => {
   const FlightModal = () => {
     return (
       <div
-        className="absolute top-full left-0 mt-3 bg-white shadow-xl rounded-xl w-[800px] p-6 z-50"
+className="absolute top-full left-0 mt-3 bg-white shadow-xl rounded-xl w-[95vw] md:w-[800px] p-4 md:p-6 z-50"
         onMouseEnter={() => setShowFlightMenu(true)}
         onMouseLeave={() => setShowFlightMenu(false)}
       >
@@ -140,49 +141,30 @@ const Navbar = () => {
 
   return (
     <nav className='relative w-full'>
-      <div className='flex flex-row w-full justify-between py-3 items-center px-25 shadow-mmd'>
+<div className="flex w-full items-center justify-between py-3 px-4 md:px-10 lg:px-20 shadow-md">
+{/* Mobile Menu Button */}
+
 
         {/* LEFT SIDE */}
-        <div
-          className="left flex flex-row gap-4 items-center cursor-pointer relative"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
-        >
-          <img width={120} src="https://c.fareportal.com/gcms//cms/global_assets/sitelogo_92.webp" />
+      <div className="flex items-center gap-4">
+  {/* Mobile Menu Button */}
+  <button
+    className="md:hidden text-gray-700 text-2xl"
+    onClick={() => setMobileMenu(!mobileMenu)}
+  >
+    ☰
+  </button>
 
-          {/* Explore Travel */}
-          <div
-            className="relative flex items-center ml-5"
-            onMouseEnter={() => setShowFlightMenu(true)}
-            onMouseLeave={() => setShowFlightMenu(false)}
-          >
-            <button className="font-semibold hover:text-blue-600">
-              Explore Travel
-            </button>
-            <ChevronDown size={15} className="ml-1" />
+  <img
+    width={110}
+    className="cursor-pointer"
+    src="https://c.fareportal.com/gcms//cms/global_assets/sitelogo_92.webp"
+  />
+</div>
 
-            {showFlightMenu && <FlightModal />}
-          </div>
-
-          {/* Dropdown */}
-          {open && (
-            <>
-              <div className="fixed inset-0 bg-black/20 z-40"></div>
-
-              <div className="absolute top-10 left-32 bg-white shadow-xl rounded-xl w-56 py-3 z-50">
-                <DropdownItem icon={<Plane size={18} />} label="Flights" />
-                <DropdownItem icon={<Hotel size={18} />} label="Hotels" />
-                <DropdownItem icon={<Car size={18} />} label="Cars" />
-                <DropdownItem icon={<Palmtree size={18} />} label="Packages" />
-                <DropdownItem icon={<Compass size={18} />} label="Explore" />
-                <DropdownItem icon={<Tag size={18} />} label="Deals" arrow />
-              </div>
-            </>
-          )}
-        </div>
 
         {/* RIGHT SIDE */}
-        <div className="right flex flex-row gap-6 items-center">
+<div className="hidden lg:flex flex-row gap-6 items-center">
 
           {/* Call */}
           <span className='rounded-full pl-1 pr-6 pt-1 border flex flex-row gap-3 border-green-700 items-center cursor-pointer'>
@@ -233,6 +215,27 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+{/* Mobile Menu Panel */}
+{/* Mobile Menu Panel */}
+{mobileMenu && (
+  <div className="md:hidden bg-white shadow-lg border-t px-6 py-4 space-y-4">
+    <div className="font-semibold">Flights</div>
+    <div className="font-semibold">Hotels</div>
+    <div className="font-semibold">Cars</div>
+    <div className="font-semibold">Packages</div>
+    <div className="font-semibold">Deals</div>
+
+    <button
+      onClick={() => {
+        setShowAuthModal(true);
+        setMobileMenu(false);
+      }}
+      className="block w-full text-left font-bold text-blue-600"
+    >
+      Sign In / Join
+    </button>
+  </div>
+)}
 
       {/* AUTH MODAL */}
       {showAuthModal && <AuthModal close={() => setShowAuthModal(false)} />}
@@ -243,6 +246,7 @@ const Navbar = () => {
 export default Navbar
 
 /* ================= DROPDOWN ITEM ================= */
+
 
 const DropdownItem = ({ icon, label, arrow }) => (
   <div className="group flex items-center justify-between px-5 py-2 cursor-pointer hover:bg-gray-100">
